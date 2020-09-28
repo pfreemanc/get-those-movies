@@ -20,10 +20,11 @@ class App extends Component{
       dataResponse: "json",
       params: {
         api_key: "beabdb43f08aa5d9b3b495150f0ba136",
-        sort_by: "popularity.desc",
+        sort_by: "revenue.desc",
         primary_release_year: this.state.yearChoice,
       },
     }).then((result) => {
+      console.log(result.data);
       this.setState({
         movies: result.data.results,
       });

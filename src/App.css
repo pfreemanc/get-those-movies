@@ -7,6 +7,9 @@
   width: 90%;
   margin: 0 auto;
 }
+body {
+  background: #9a8c98;
+}
 
 h1,
 h2,
@@ -15,16 +18,41 @@ h3 {
 }
 
 .movies {
+  padding: 50px;
+  background: #4a4e69;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
+.movies div {
+  color: #c9ada7;
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
 
 .movies h2 {
-  grid-column-start: span 3;
+  grid-column-start: span 4;
+}
+
+.movies div h3 {
+  margin: 20px 0;
 }
 
 img {
   width: 100%;
   height: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0;
+}
+
+form input,
+form button {
+  width: 50%;
 }
