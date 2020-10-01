@@ -12,6 +12,7 @@ class Details extends Component {
     }
   }
   
+  // making another API call in order to get the movie details for the specific movie, more info returned this way 
   componentDidMount() {
     axios.get(`https://api.themoviedb.org/3/movie/${this.props.movieId}`, {
       params: {
@@ -29,6 +30,7 @@ class Details extends Component {
   
     })
   }
+  
   render() {
     return(
       <div className="movieDetails">

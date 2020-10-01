@@ -3,7 +3,6 @@ import './App.css';
 import axios from 'axios';
 import Form from './Form.js'
 import Movies from './Movies.js'
-import swal from 'sweetalert';
 
 class App extends Component{
 
@@ -32,11 +31,9 @@ class App extends Component{
         primary_release_year: yearChoice,
       },
     }).then((result) => {
-      const pageAmount = result.data.total_pages;
       const movies = result.data.results;
       this.setState({
         movies,
-        pageAmount,
       });
     });
   }
@@ -46,10 +43,15 @@ class App extends Component{
       <div className="App wrapper">
         <h1>Wanna go to the movies with me?</h1>
         <Form handleClick={this.handleClick} />
-        {this.state.buttonTriggered ? 
-        (<Movies movies={this.state.movies} getPosters={this.getPosters} />)
-        : null
-        }
+        {this.state.buttonTriggered ? (
+          <Movies movies={this.state.movies} getPosters={this.getPosters} />
+        ) : null}
+        <footer>
+          <p>
+            Created at <a href="https://junocollege.com/">Juno College</a> by
+            <a href="https://www.paigelongname.com/"> Paige Freeman-Cyopeck</a> , powered by the MovieDB API
+          </p>
+        </footer>
       </div>
     );
   }
