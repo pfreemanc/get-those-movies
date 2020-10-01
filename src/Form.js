@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 class Form extends Component {
   
   constructor() {
@@ -22,38 +23,39 @@ class Form extends Component {
       sortChoice: event.target.value,
     })
   }
-  
-
   render() {
     return (
       <div className="form">
         <form action="">
-          <label htmlFor="yearChoice">
-            Choose your year!
-          </label>
-          <input
-            type="number"
-            name="yearChoice"
-            id="yearChoice"
-            onChange={this.handleChange}
-            value={this.state.yearChoice}
-          />
-          <label htmlFor="searchField">Sort your stuff!</label>
-          <select name="searchField" id="searchField"
-            value={this.state.sortChoice} onChange={(event) => {
-              this.handleSortChoice(event)}}>
-            <option value="popularity.desc">Popularity</option>
-            <option value='primary_release_date.desc'>Release Date</option>
-            <option value="vote_count.desc">Amount of Votes</option>
-            <option value="revenue.desc">Revenue</option>
-          </select>
-          <input
+          <fieldset>
+            <label htmlFor="yearChoice">
+              Choose your year!
+            </label>
+            <input
+              type="number"
+              name="yearChoice"
+              id="yearChoice"
+              onChange={this.handleChange}
+              value={this.state.yearChoice}
+            />
+          </fieldset>
+          <fieldset>
+            <label htmlFor="searchField">Sort your stuff!</label>
+            <select name="searchField" id="searchField"
+              value={this.state.sortChoice} onChange={(event) => {
+                this.handleSortChoice(event)}}>
+              <option value="popularity.desc">Popularity</option>
+              <option value='primary_release_date.desc'>Release Date</option>
+              <option value="vote_count.desc">Amount of Votes</option>
+              <option value="revenue.desc">Revenue</option>
+            </select>
+          </fieldset>
+          <button
             type="submit"
             onClick={ (event) => {
               this.props.handleClick(event, this.state.yearChoice, this.state.sortChoice);
             }}
-            value="Show me those movies!"
-          />
+            >Lets see our options!</button>
         </form>
       </div>
     );

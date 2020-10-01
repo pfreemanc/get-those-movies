@@ -1,27 +1,29 @@
+import Axios from "axios";
 import React, { Component } from "react";
 import Posters from "./MoviePoster";
+import Details from "./MovieDetails"
 
 class Movies extends Component {
   constructor() {
     super();
     this.state = {
-      buttonClicked: false,
-      selectedMovie: "",
+      currentMovie: [],
     };
   }
-
+  
   render() {
     const movies = this.props.movies;
+
     return (
       <div className="movies">
-        <h2>Movies</h2>
+        <h2>Your Movie Choices Are....</h2>
         {movies.map((movie) => {
-          console.log(movie);
           return (
             <div key={movie.id}>
-              <h3>{movie.title}</h3>
+              <h2 className="nowPlayingSign">Now Playing...</h2>
+              {/* <h3>{movie.title}</h3> */}
               <Posters currentMovie={movie} /> 
-              <p>{movie.release_date}</p>  
+              <Details movieId={movie.id} />
             </div>
           );
         })}

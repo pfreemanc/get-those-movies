@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import Form from './Form.js'
 import Movies from './Movies.js'
+import swal from 'sweetalert';
 
 class App extends Component{
 
@@ -10,14 +11,17 @@ class App extends Component{
     super();
     this.state = {
       movies: [],
-      currentPage: null,
-
-      
+      buttonTriggered: false,
     }
   }
 
   handleClick = (event, yearChoice, sortChoice) => {
+    this.setState({
+      buttonTriggered: true,
+    })
+
     event.preventDefault();
+    // initial axios call 
     axios({
       method: "GET",
       url: "https://api.themoviedb.org/3/discover/movie?vote_count.gte=1000",
@@ -26,29 +30,26 @@ class App extends Component{
         api_key: "beabdb43f08aa5d9b3b495150f0ba136",
         sort_by: sortChoice,
         primary_release_year: yearChoice,
-        page: this.state.currentPage,
       },
     }).then((result) => {
-      console.log(result.data.page);
-      console.log(result.data);
-      const currentPage = result.data.page;
       const pageAmount = result.data.total_pages;
       const movies = result.data.results;
       this.setState({
         movies,
         pageAmount,
-        currentPage,
       });
     });
   }
 
-
   render() {
     return (
       <div className="App wrapper">
-        <h1>Test</h1>
+        <h1>Wanna go to the movies with me?</h1>
         <Form handleClick={this.handleClick} />
-        <Movies movies={this.state.movies} getPosters={this.getPosters}  />
+        {this.state.buttonTriggered ? 
+        (<Movies movies={this.state.movies} getPosters={this.getPosters} />)
+        : null
+        }
       </div>
     );
   }
